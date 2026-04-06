@@ -144,9 +144,7 @@ nav{
   box-shadow:var(--shadow);
 }
 .nav-item:hover .dropdown,
-.nav-item.open .dropdown{
-  display:block;
-}
+.nav-item.open .dropdown{display:block}
 .dropdown a{
   display:block;
   padding:12px 14px;
@@ -184,7 +182,7 @@ nav{
 }
 
 .hero{
-  padding:70px 0;
+  padding:70px 0 34px;
   display:grid;
   grid-template-columns:1.1fr .9fr;
   gap:40px;
@@ -263,41 +261,54 @@ nav{
   object-fit:cover;
   background:#04100b;
 }
-.benefits{
-  margin-top:40px;
+
+.proof-strip{
+  padding:0 0 10px;
+}
+.proof-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:16px;
 }
-.benefit{
-  padding:16px;
-  border-radius:14px;
-  background:var(--panel);
+.proof-item{
+  padding:16px 18px;
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
   border:1px solid var(--line);
-  transition:.18s ease;
+  box-shadow:var(--shadow-soft);
 }
-.benefit:hover{
-  transform:translateY(-3px);
-  border-color:rgba(44,255,135,.18);
-  background:var(--panel-2);
-}
-.benefit b{
+.proof-item strong{
   display:block;
+  font-size:18px;
   margin-bottom:6px;
-  font-size:15px;
-  letter-spacing:-.2px;
+  color:var(--green2);
+  letter-spacing:-.3px;
 }
-.benefit span{
+.proof-item span{
   color:var(--muted);
-  line-height:1.55;
   font-size:14px;
+  line-height:1.55;
 }
-.services{margin-top:80px}
+
+.services{margin-top:70px}
+.services-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:18px;
+}
 .services h2{
-  margin:0 0 18px;
+  margin:0;
   font-family:Sora,Inter,system-ui,sans-serif;
   font-size:38px;
   letter-spacing:-1px;
+}
+.services-sub{
+  max-width:480px;
+  color:var(--muted);
+  line-height:1.65;
+  font-size:15px;
 }
 .services-grid{
   display:grid;
@@ -317,6 +328,17 @@ nav{
   border-color:rgba(44,255,135,.18);
   background:var(--panel-2);
 }
+.service .service-tag{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(44,255,135,.18);
+  color:var(--green3);
+  background:rgba(44,255,135,.08);
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:14px;
+}
 .service h3{
   margin:0 0 10px;
   font-size:20px;
@@ -328,6 +350,7 @@ nav{
   line-height:1.65;
   font-size:14.5px;
 }
+
 .slider{margin-top:80px;overflow:hidden}
 .slide-track{
   display:flex;
@@ -346,6 +369,7 @@ nav{
   box-shadow:var(--shadow-soft);
 }
 @keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
 .big-cta{
   margin-top:90px;
   padding:60px;
@@ -378,6 +402,7 @@ footer{
 
 @media(max-width:1100px){
   .services-grid{grid-template-columns:repeat(2,1fr)}
+  .proof-grid{grid-template-columns:repeat(2,1fr)}
   .hero h1{font-size:52px;max-width:15ch}
 }
 
@@ -413,11 +438,14 @@ footer{
     display:none;
   }
   .nav-item.open .dropdown{display:block}
-  .hero{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;padding-top:42px}
   .hero h1{max-width:100%;font-size:44px;min-height:auto}
-  .benefits{grid-template-columns:1fr}
+  .proof-grid{grid-template-columns:1fr}
   .services-grid{grid-template-columns:1fr}
+  .services-head{flex-direction:column;align-items:flex-start}
   .video-box{width:100%;max-width:280px;justify-self:start}
+  .big-cta{padding:34px 20px}
+  .big-cta h2{font-size:34px}
 }
 </style>
 </head>
@@ -527,48 +555,58 @@ footer{
   </div>
 </section>
 
-<section class="benefits wrap">
-  <div class="benefit">
-    <b>Tráfego Pago</b>
-    <span>Mais clientes chegando até você com intenção real de compra.</span>
-  </div>
-
-  <div class="benefit">
-    <b>Instagram Profissional</b>
-    <span>Mais autoridade, mais presença e uma imagem mais forte para sua marca.</span>
-  </div>
-
-  <div class="benefit">
-    <b>Sites Premium</b>
-    <span>Presença digital forte, profissional e preparada para converter.</span>
-  </div>
-
-  <div class="benefit">
-    <b>WhatsApp & Vendas</b>
-    <span>Mais conversas, mais orçamento e mais chances de fechar.</span>
+<section class="proof-strip wrap">
+  <div class="proof-grid">
+    <div class="proof-item">
+      <strong>Mais organização</strong>
+      <span>Estrutura digital pensada para sua empresa vender com clareza e confiança.</span>
+    </div>
+    <div class="proof-item">
+      <strong>Mais autoridade</strong>
+      <span>Instagram, site e presença visual alinhados para valorizar sua marca.</span>
+    </div>
+    <div class="proof-item">
+      <strong>Mais conversas</strong>
+      <span>Campanhas e páginas com foco em gerar orçamento no WhatsApp.</span>
+    </div>
+    <div class="proof-item">
+      <strong>Mais resultado</strong>
+      <span>Tráfego, conteúdo e sistema trabalhando juntos para crescer com padrão.</span>
+    </div>
   </div>
 </section>
 
 <section class="services wrap">
-  <h2>Soluções para empresas</h2>
+  <div class="services-head">
+    <div>
+      <h2>Soluções para empresas</h2>
+    </div>
+    <div class="services-sub">
+      Escolha a estrutura ideal para sua empresa atrair clientes, fortalecer a marca e vender com mais consistência.
+    </div>
+  </div>
 
   <div class="services-grid">
     <div class="service">
+      <span class="service-tag">Captação</span>
       <h3>Tráfego Pago</h3>
       <p>Campanhas para atrair clientes com interesse real no seu produto ou serviço.</p>
     </div>
 
     <div class="service">
+      <span class="service-tag">Autoridade</span>
       <h3>Instagram Profissional</h3>
       <p>Perfil forte, organizado e mais preparado para gerar confiança e vendas.</p>
     </div>
 
     <div class="service">
+      <span class="service-tag">Presença digital</span>
       <h3>Sites Premium</h3>
       <p>Estrutura digital profissional para apresentar melhor sua empresa e converter mais.</p>
     </div>
 
     <div class="service">
+      <span class="service-tag">Gestão</span>
       <h3>Sistemas para Empresas</h3>
       <p>Soluções de gestão com cadastro de clientes, funcionários e controle interno para o negócio crescer com mais organização.</p>
     </div>
@@ -646,10 +684,7 @@ menuToggle.addEventListener('click', () => {
 
 dropdownButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
-    if (window.innerWidth > 900) {
-      return;
-    }
-
+    if (window.innerWidth > 900) return;
     event.preventDefault();
     const parent = button.parentElement;
     document.querySelectorAll('.nav-item').forEach((item) => {
