@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#06120d">
+<title>PL Digital Marketing</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#06120d;
+  --bg2:#03110b;
+  --green:#2cff87;
+  --green2:#87ffb4;
+  --green3:#c8ffd9;
+  --text:#f3f6f4;
+  --muted:#9fb0a8;
+  --panel:rgba(255,255,255,.04);
+  --panel-2:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.16);
+  --radius:20px;
+  --radius-sm:14px;
+  --max:1200px;
+  --shadow:0 20px 50px rgba(0,0,0,.35);
+  --shadow-soft:0 10px 24px rgba(0,0,0,.20);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(900px 500px at 20% 10%,rgba(44,255,135,.16),transparent 60%),
+    radial-gradient(800px 400px at 80% 20%,rgba(44,255,135,.10),transparent 60%),
+    linear-gradient(180deg,#03100a,#020906);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:auto;padding:0 18px}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(2,8,6,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:70px;
+  gap:18px;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  letter-spacing:-.2px;
+  white-space:nowrap;
+}
+.logo img{
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  object-fit:cover;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+}
+.logo span{font-size:15px}
+
+.menu-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  font-size:22px;
+  cursor:pointer;
+}
+
+nav{
+  display:flex;
+  gap:4px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.nav-item{position:relative}
+.nav-btn,
+.nav-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:-.2px;
+  cursor:pointer;
+  color:rgba(243,246,244,.96);
+  transition:.18s ease;
+  border:1px solid transparent;
+  background:transparent;
+}
+.nav-btn:hover,
+.nav-link:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.07);
+}
+.nav-btn::after{
+  content:"▾";
+  margin-left:8px;
+  font-size:11px;
+  opacity:.9;
+}
+
+.dropdown{
+  position:absolute;
+  top:46px;
+  left:0;
+  background:#05130d;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:8px;
+  width:290px;
+  display:none;
+  box-shadow:var(--shadow);
+}
+.nav-item:hover .dropdown,
+.nav-item.open .dropdown{
+  display:block;
+}
+.dropdown a{
+  display:block;
+  padding:12px 14px;
+  border-radius:12px;
+  font-size:14px;
+  font-weight:800;
+  line-height:1.35;
+  color:rgba(243,246,244,.98);
+  transition:.18s ease;
+  letter-spacing:-.15px;
+}
+.dropdown a:hover{
+  background:rgba(255,255,255,.06);
+  color:var(--green3);
+}
+
+.cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  background:linear-gradient(135deg,var(--green),var(--green2));
+  color:#032b18;
+  padding:10px 18px;
+  border-radius:999px;
+  font-weight:900;
+  letter-spacing:-.2px;
+  box-shadow:0 12px 24px rgba(44,255,135,.12);
+  transition:.18s ease;
+  white-space:nowrap;
+}
+.cta:hover{
+  transform:translateY(-1px);
+  box-shadow:0 16px 30px rgba(44,255,135,.18);
+}
+
+.hero{
+  padding:70px 0;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:40px;
+  align-items:center;
+}
+.hero-copy{min-width:0}
+.hero h1{
+  font-family:Sora,Inter,system-ui,sans-serif;
+  font-size:60px;
+  line-height:1.04;
+  margin:0;
+  letter-spacing:-2px;
+  max-width:14ch;
+  min-height:3.2em;
+}
+.hero h1 .accent{color:var(--green2)}
+.hero h1 .cursor{
+  display:inline-block;
+  width:2px;
+  height:1em;
+  background:var(--green2);
+  margin-left:6px;
+  transform:translateY(3px);
+  animation:blink .9s steps(1,end) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+.hero p{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.65;
+  max-width:520px;
+  font-weight:500;
+}
+.hero-buttons{
+  margin-top:24px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:14px 20px;
+  border-radius:12px;
+  font-weight:800;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  transition:.18s ease;
+  box-shadow:var(--shadow-soft);
+}
+.btn:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.06);
+}
+.btn.primary{
+  background:linear-gradient(135deg,var(--green),var(--green2));
+  color:#032b18;
+  border:none;
+}
+.video-box{
+  width:60%;
+  max-width:330px;
+  justify-self:end;
+  background:var(--panel);
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+.video-box video{
+  width:100%;
+  aspect-ratio:1 / 1;
+  object-fit:cover;
+  background:#04100b;
+}
+.benefits{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.benefit{
+  padding:16px;
+  border-radius:14px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  transition:.18s ease;
+}
+.benefit:hover{
+  transform:translateY(-3px);
+  border-color:rgba(44,255,135,.18);
+  background:var(--panel-2);
+}
+.benefit b{
+  display:block;
+  margin-bottom:6px;
+  font-size:15px;
+  letter-spacing:-.2px;
+}
+.benefit span{
+  color:var(--muted);
+  line-height:1.55;
+  font-size:14px;
+}
+.services{margin-top:80px}
+.services h2{
+  margin:0 0 18px;
+  font-family:Sora,Inter,system-ui,sans-serif;
+  font-size:38px;
+  letter-spacing:-1px;
+}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+.service{
+  padding:22px;
+  background:var(--panel);
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+  transition:.18s ease;
+}
+.service:hover{
+  transform:translateY(-4px);
+  border-color:rgba(44,255,135,.18);
+  background:var(--panel-2);
+}
+.service h3{
+  margin:0 0 10px;
+  font-size:20px;
+  letter-spacing:-.4px;
+}
+.service p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.65;
+  font-size:14.5px;
+}
+.slider{margin-top:80px;overflow:hidden}
+.slide-track{
+  display:flex;
+  gap:20px;
+  width:max-content;
+  animation:slide 24s linear infinite;
+}
+.slide{
+  min-width:320px;
+  padding:20px;
+  background:var(--panel);
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  font-weight:800;
+  letter-spacing:-.2px;
+  box-shadow:var(--shadow-soft);
+}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.big-cta{
+  margin-top:90px;
+  padding:60px;
+  text-align:center;
+  background:linear-gradient(135deg,#042017,#020a06);
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+.big-cta h2{
+  font-family:Sora,Inter,system-ui,sans-serif;
+  font-size:44px;
+  letter-spacing:-1px;
+  margin:0 0 12px;
+}
+.big-cta p{
+  margin:0;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.65;
+}
+footer{
+  margin-top:80px;
+  padding:40px 0;
+  border-top:1px solid var(--line);
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+}
+
+@media(max-width:1100px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:52px;max-width:15ch}
+}
+
+@media(max-width:900px){
+  .menu-toggle{display:inline-flex}
+  .topbar{
+    padding:12px 0;
+    min-height:auto;
+    flex-wrap:wrap;
+    justify-content:space-between;
+  }
+  nav{
+    display:none;
+    width:100%;
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+    padding:10px 0 0;
+  }
+  nav.open{display:flex}
+  .nav-item,
+  .nav-link,
+  .nav-btn,
+  .cta{width:100%}
+  .nav-link,
+  .nav-btn,
+  .cta{justify-content:flex-start}
+  .nav-btn::after{margin-left:auto}
+  .dropdown{
+    position:static;
+    width:100%;
+    margin-top:8px;
+    display:none;
+  }
+  .nav-item.open .dropdown{display:block}
+  .hero{grid-template-columns:1fr}
+  .hero h1{max-width:100%;font-size:44px;min-height:auto}
+  .benefits{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .video-box{width:100%;max-width:280px;justify-self:start}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <a class="logo" href="index.html">
+      <img src="logo.png" alt="PL Digital">
+      <span>PL Digital</span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="Abrir menu">☰</button>
+
+    <nav id="siteNav">
+      <a class="nav-link" href="index.html">Home</a>
+
+      <div class="nav-item">
+        <button class="nav-btn" type="button">Sites</button>
+        <div class="dropdown">
+          <a href="servicos.html">Sites institucionais</a>
+          <a href="servicos.html">Landing Pages</a>
+          <a href="portfolio.html">Modelos de sites</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-btn" type="button">Tráfego Pago</button>
+        <div class="dropdown">
+          <a href="servicos.html">Captação de clientes</a>
+          <a href="servicos.html">Campanhas para WhatsApp</a>
+          <a href="servicos.html">Vendas locais</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-btn" type="button">Instagram</button>
+        <div class="dropdown">
+          <a href="instagram.html">Instagram que vende</a>
+          <a href="instagram.html">Conteúdo estratégico</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-btn" type="button">Sistemas</button>
+        <div class="dropdown">
+          <a href="servicos.html">Sistema para empresas</a>
+          <a href="servicos.html">Cadastro de clientes</a>
+          <a href="servicos.html">Cadastro de funcionários</a>
+          <a href="servicos.html">Controle interno / gestão</a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="portfolio.html">Portfólio</a>
+
+      <div class="nav-item">
+        <button class="nav-btn" type="button">Dicas</button>
+        <div class="dropdown">
+          <a href="servicos.html">Quer mais clientes?</a>
+          <a href="portfolio.html">Site que vende</a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="contato.html">Contato</a>
+    </nav>
+
+    <a
+      class="cta"
+      href="https://wa.me/5531998064556?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20PL%20Digital%20e%20quero%20um%20or%C3%A7amento."
+      target="_blank"
+      rel="noopener"
+    >
+      Fazer orçamento
+    </a>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="hero-copy">
+    <h1 id="heroTitle">
+      <span class="accent" id="typedAccent"></span><span id="typedRest"></span><span class="cursor"></span>
+    </h1>
+
+    <p>
+      A PL Digital une tráfego pago, Instagram, sites, sistemas para empresas e WhatsApp para atrair clientes, passar confiança e vender mais.
+    </p>
+
+    <div class="hero-buttons">
+      <a
+        class="btn primary"
+        href="https://wa.me/5531998064556?text=Ol%C3%A1%2C%20quero%20mais%20clientes%20para%20minha%20empresa."
+        target="_blank"
+        rel="noopener"
+      >
+        Quero mais clientes
+      </a>
+      <a class="btn" href="portfolio.html">Ver portfólio</a>
+      <a class="btn" href="instagram.html">Ver Instagram</a>
+    </div>
+  </div>
+
+  <div class="video-box">
+    <video autoplay muted loop playsinline poster="video-capa.jpg">
+      <source src="video.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo.
+    </video>
+  </div>
+</section>
+
+<section class="benefits wrap">
+  <div class="benefit">
+    <b>Tráfego Pago</b>
+    <span>Mais clientes chegando até você com intenção real de compra.</span>
+  </div>
+
+  <div class="benefit">
+    <b>Instagram Profissional</b>
+    <span>Mais autoridade, mais presença e uma imagem mais forte para sua marca.</span>
+  </div>
+
+  <div class="benefit">
+    <b>Sites Premium</b>
+    <span>Presença digital forte, profissional e preparada para converter.</span>
+  </div>
+
+  <div class="benefit">
+    <b>WhatsApp & Vendas</b>
+    <span>Mais conversas, mais orçamento e mais chances de fechar.</span>
+  </div>
+</section>
+
+<section class="services wrap">
+  <h2>Soluções para empresas</h2>
+
+  <div class="services-grid">
+    <div class="service">
+      <h3>Tráfego Pago</h3>
+      <p>Campanhas para atrair clientes com interesse real no seu produto ou serviço.</p>
+    </div>
+
+    <div class="service">
+      <h3>Instagram Profissional</h3>
+      <p>Perfil forte, organizado e mais preparado para gerar confiança e vendas.</p>
+    </div>
+
+    <div class="service">
+      <h3>Sites Premium</h3>
+      <p>Estrutura digital profissional para apresentar melhor sua empresa e converter mais.</p>
+    </div>
+
+    <div class="service">
+      <h3>Sistemas para Empresas</h3>
+      <p>Soluções de gestão com cadastro de clientes, funcionários e controle interno para o negócio crescer com mais organização.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slider wrap">
+  <div class="slide-track">
+    <div class="slide">Landing Pages</div>
+    <div class="slide">Sites empresariais</div>
+    <div class="slide">Instagram profissional</div>
+    <div class="slide">Tráfego pago</div>
+    <div class="slide">Sistemas empresariais</div>
+    <div class="slide">Landing Pages</div>
+    <div class="slide">Sites empresariais</div>
+    <div class="slide">Instagram profissional</div>
+    <div class="slide">Tráfego pago</div>
+    <div class="slide">Sistemas empresariais</div>
+  </div>
+</section>
+
+<section class="big-cta wrap">
+  <h2>Quer mais clientes?</h2>
+  <p>Vamos montar a estrutura digital ideal para sua empresa vender mais: tráfego pago, Instagram, site, WhatsApp e sistemas.</p>
+  <br>
+  <a
+    class="btn primary"
+    href="https://wa.me/5531998064556?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20falar%20sobre%20tr%C3%A1fego%20pago%2C%20Instagram%2C%20site%20ou%20sistema%20para%20minha%20empresa."
+    target="_blank"
+    rel="noopener"
+  >
+    Falar no WhatsApp
+  </a>
+</section>
+
+<footer>
+  PL Digital Marketing • Tráfego • Sites • Instagram • Sistemas
+</footer>
+
+<script>
+const accentText = "Tráfego pago";
+const restText = ", Instagram, site e vendas funcionando juntos.";
+const accentEl = document.getElementById("typedAccent");
+const restEl = document.getElementById("typedRest");
+let i = 0;
+let j = 0;
+
+function typeAccent(){
+  if(i < accentText.length){
+    accentEl.textContent += accentText.charAt(i);
+    i++;
+    setTimeout(typeAccent, 85);
+  }else{
+    setTimeout(typeRest, 120);
+  }
+}
+
+function typeRest(){
+  if(j < restText.length){
+    restEl.textContent += restText.charAt(j);
+    j++;
+    setTimeout(typeRest, 34);
+  }
+}
+
+window.addEventListener("load", typeAccent);
+
+const menuToggle = document.querySelector('.menu-toggle');
+const siteNav = document.getElementById('siteNav');
+const dropdownButtons = document.querySelectorAll('.nav-item > .nav-btn');
+
+menuToggle.addEventListener('click', () => {
+  siteNav.classList.toggle('open');
+});
+
+dropdownButtons.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    if (window.innerWidth > 900) {
+      return;
+    }
+
+    event.preventDefault();
+    const parent = button.parentElement;
+    document.querySelectorAll('.nav-item').forEach((item) => {
+      if (item !== parent) item.classList.remove('open');
+    });
+    parent.classList.toggle('open');
+  });
+});
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.nav-item') && !event.target.closest('.menu-toggle')) {
+    document.querySelectorAll('.nav-item').forEach((item) => item.classList.remove('open'));
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) {
+    siteNav.classList.remove('open');
+    document.querySelectorAll('.nav-item').forEach((item) => item.classList.remove('open'));
+  }
+});
+</script>
+
+</body>
+</html>
